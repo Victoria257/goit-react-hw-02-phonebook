@@ -1,4 +1,4 @@
-import css from './Contacts.module.css'
+// import css from './Contacts.module.css'
 
 export const Contacts = ({ contacts }) => {
     // console.log(contacts);
