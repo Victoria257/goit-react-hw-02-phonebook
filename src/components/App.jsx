@@ -27,10 +27,15 @@ state = {
     name: text.name,
     number:text.number,
     }
-    
-    this.setState(prevState => ({
-      contacts:[contact, ...prevState.contacts]
-    }))
+
+    const theSameName = this.state.contacts.find(prevContact=>prevContact.name===contact.name)
+    if (theSameName) alert(`${contact.name} is already in contacts`)
+    else {
+      this.setState(prevState => ({
+        contacts: [contact, ...prevState.contacts]
+      }))
+    }
+
   }
 
   changeFilter = (event) => {
