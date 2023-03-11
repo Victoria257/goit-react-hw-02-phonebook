@@ -5,8 +5,6 @@ import Form from 'components/Form/Form';
 import Contacts from 'components/Contacts/Contacts'
 import FilterContacts from "./FilterContacts/FilterContacts";
 
-import css from 'components/Form/Form.module.css'
-
 class App extends Component {
   
 state = {
@@ -58,7 +56,7 @@ state = {
   render() {
     const visibleContacts = this.getVisibleContacts();
     return (
-      <div className={css.container}>
+      <div>
       <Form onSubmit={this.formSubmitHandler} addContacts={ this.addContacts} />
         <Contacts contacts={visibleContacts} delContact={this.delContact}>
           <FilterContacts filter={this.state.filter} onChange={this.changeFilter} />
