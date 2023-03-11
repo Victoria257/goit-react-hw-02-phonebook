@@ -1,12 +1,14 @@
 import { Component } from "react";
+import css from './FilterContacts.module.css'
 
 class FilterContacts extends Component {
     render() {
         const {filter, onChange} = this.props
         return (
-            <div>
+            <div className={css.filter}> 
                 <h3>Find contacts by name</h3>
-              <input
+                <input
+                    className={css.filterInput}
                 type='text'
                     name='text'
                     value={filter}

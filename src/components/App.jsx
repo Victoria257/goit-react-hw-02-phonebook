@@ -1,8 +1,11 @@
 import React, { Component } from "react";
+import { nanoid } from 'nanoid'
+
 import Form from 'components/Form/Form';
 import Contacts from 'components/Contacts/Contacts'
-import { nanoid } from 'nanoid'
 import FilterContacts from "./FilterContacts/FilterContacts";
+
+import css from 'components/Form/Form.module.css'
 
 class App extends Component {
   
@@ -19,8 +22,7 @@ state = {
   formSubmitHandler = data => {
     console.log(data);
   }
-
-  
+ 
   addContacts = ({name, number}) => {
     const contact = {
     id: nanoid(7),
@@ -56,7 +58,7 @@ state = {
   render() {
     const visibleContacts = this.getVisibleContacts();
     return (
-      <div>
+      <div className={css.container}>
       <Form onSubmit={this.formSubmitHandler} addContacts={ this.addContacts} />
         <Contacts contacts={visibleContacts} delContact={this.delContact}>
           <FilterContacts filter={this.state.filter} onChange={this.changeFilter} />

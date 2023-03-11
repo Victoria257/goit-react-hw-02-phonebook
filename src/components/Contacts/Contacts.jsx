@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import css from './Contacts.module.css'
+import css from './Contacts.module.css'
 
 class Contacts extends Component  {
    
@@ -8,10 +8,10 @@ class Contacts extends Component  {
         return (<div>
             <h2>Contacts</h2>
             {this.props.children}
-            <ul>
+            <ul className={css.contactsList}>
                 {this.props.contacts.map(({ name, number, id }) => (
-                    <li key={id}>{name}: {number}
-                        <button type="button" onClick={()=>this.props.delContact(id)}>delete</button>
+                    <li className={css.contact} key={id}>{name}: {number}
+                        <button className={css.delButton} type="button" onClick={()=>this.props.delContact(id)}>delete</button>
                     </li>
                 ))}
             </ul>

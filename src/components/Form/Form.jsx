@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import css from './Form.module.css'
+import css from './Form.module.css'
 
 
 class Form extends Component {
@@ -31,12 +31,13 @@ class Form extends Component {
 
     render() {
         return (
-            <div>
+            <div className={css.formWrapper}>
                 <h1>Phonebook</h1>
-                <form action="" onSubmit={this.handleSubmit}>
-                    <label htmlFor="">
+                <form className={css.form} onSubmit={this.handleSubmit}>
+                    <label className={css.formLable}>
                         Name
                         <input
+                            className={css.formInput}
                             type="text"
                             name="name"
                             value={this.state.name}
@@ -46,9 +47,10 @@ class Form extends Component {
                             required
                         />
                     </label>
-                    <label htmlFor="">
+                    <label className={css.formLable}>
                         Phone number
-                      <input
+                        <input
+                            className={css.formInput}
                             type="tel"
                             name="number"
                             value={this.state.number}
@@ -58,7 +60,7 @@ class Form extends Component {
                             required
                          />
                     </label>
-                    <button type="submit" >Add contact</button>
+                    <button className={css.formBtn} type="submit" >Add contact</button>
                 </form>
             </div>
         )
