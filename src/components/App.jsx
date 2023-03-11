@@ -21,11 +21,11 @@ state = {
   }
 
   
-  addContacts = (text) => {
+  addContacts = ({name, number}) => {
     const contact = {
     id: nanoid(7),
-    name: text.name,
-    number:text.number,
+    name,
+    number,
     }
 
     const theSameName = this.state.contacts.find(prevContact=>prevContact.name===contact.name)
@@ -46,13 +46,19 @@ state = {
     const normalizeFilter = this.state.filter.toLocaleLowerCase();
      return this.state.contacts.filter(contact=> contact.name.toLocaleLowerCase().includes(normalizeFilter))
   }
+
+  delContact = (contactId) => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact=>contact.id!==contactId)
+    }))
+  }
   
   render() {
     const visibleContacts = this.getVisibleContacts();
     return (
       <div>
       <Form onSubmit={this.formSubmitHandler} addContacts={ this.addContacts} />
-        <Contacts contacts={visibleContacts}>
+        <Contacts contacts={visibleContacts} delContact={this.delContact}>
           <FilterContacts filter={this.state.filter} onChange={this.changeFilter} />
       </Contacts>
         </div>
