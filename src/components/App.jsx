@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Form from 'components/Form/Form';
-import { Contacts } from 'components/Contacts/Contacts'
+import Contacts from 'components/Contacts/Contacts'
 import { nanoid } from 'nanoid'
+import FilterContacts from "./FilterContacts/FilterContacts";
 
 class App extends Component {
   
@@ -13,8 +14,6 @@ state = {
     {id: 'id-4', name: 'Annie Copeland', number: '227-91-26'},
   ],
   filter: '',
-  name: '',
-  number: ''
 }
   
   formSubmitHandler = data => {
@@ -33,12 +32,24 @@ state = {
       contacts:[contact, ...prevState.contacts]
     }))
   }
+
+  changeFilter = (event) => {
+    this.setState({ filter: event.target.value })
+  }
+
+  getVisibleContacts = () => {
+    const normalizeFilter = this.state.filter.toLocaleLowerCase();
+     return this.state.contacts.filter(contact=> contact.name.toLocaleLowerCase().includes(normalizeFilter))
+  }
   
   render() {
+    const visibleContacts = this.getVisibleContacts();
     return (
       <div>
       <Form onSubmit={this.formSubmitHandler} addContacts={ this.addContacts} />
-        <Contacts contacts={this.state.contacts}/>
+        <Contacts contacts={visibleContacts}>
+          <FilterContacts filter={this.state.filter} onChange={this.changeFilter} />
+      </Contacts>
         </div>
     )
   }
