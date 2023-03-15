@@ -8,7 +8,15 @@ const ContactList = ({ contacts, delContact, children }) => {
       <h2>Contacts</h2>
       {children}
       <ul className={css.contactsList}>
-        <Contact contacts={contacts} delContact={delContact} />
+        {contacts.map(({ id, name, number }) => (
+          <Contact
+            id={id}
+            name={name}
+            number={number}
+            key={id}
+            delContact={delContact}
+          />
+        ))}
       </ul>
     </div>
   );
@@ -22,7 +30,8 @@ ContactList.propTypes = {
       number: PropTypes.string.isRequired,
     }).isRequired
   ).isRequired,
-  onChange: PropTypes.func,
+  delContact: PropTypes.func,
+  children: PropTypes.object,
 };
 
 export default ContactList;

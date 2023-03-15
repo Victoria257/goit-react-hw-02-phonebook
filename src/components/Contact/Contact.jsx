@@ -1,7 +1,8 @@
 import css from 'components/Contact/Contact.module.css';
+import PropTypes from 'prop-types';
 
-export const Contact = ({ contacts, delContact }) => {
-  return contacts.map(({ name, number, id }) => (
+export const Contact = ({ id, name, number, delContact }) => {
+  return (
     <li className={css.contact} key={id}>
       {name}: {number}
       <button
@@ -12,5 +13,13 @@ export const Contact = ({ contacts, delContact }) => {
         delete
       </button>
     </li>
-  ));
+  );
+};
+
+Contact.propTypes = {
+  id: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.string.isRequired,
+
+  delContact: PropTypes.func,
 };
